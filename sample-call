@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Call | Perceptron Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #050b1f;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-2: #22d3ee;
+      --accent-soft: rgba(59, 130, 246, 0.25);
+      --border-soft: #1f2937;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0b1220, #050816 60%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrapper { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(5, 8, 22, 0.9);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.85);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 0.9rem 0; }
+    .nav-brand {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .nav-brand:hover {
+      background: rgba(15, 23, 42, 0.92);
+      border-color: rgba(148, 163, 184, 0.9);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+    }
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-mark {
+      width: 36px; height: 36px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.4);
+    }
+    .logo-mark img { width: 30px; height: 30px; object-fit: contain; }
+    .brand-text { display: flex; flex-direction: column; gap: 0.05rem; }
+    .brand-text span:first-child { font-weight: 600; font-size: 1.04rem; letter-spacing: 0.02em; }
+    .brand-text span:last-child { font-size: 0.8rem; color: var(--text-muted); }
+
+    .nav-actions { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-links { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; color: #cbd5f5; }
+    .nav-links a { opacity: 0.92; transition: opacity 0.18s ease, transform 0.18s ease; }
+    .nav-links a:hover { opacity: 1; transform: translateY(-1px); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 999px; border: none;
+      font-size: 0.88rem; font-weight: 500;
+      padding: 0.55rem 1.15rem;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, opacity 0.18s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #020617;
+      box-shadow: 0 0px 20px rgba(62, 130, 246, 0.55);
+    }
+    .btn-primary:hover { transform: translateY(-1px); filter: saturate(1.05); }
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+    .btn-ghost:hover { background: rgba(15, 23, 42, 0.95); transform: translateY(-1px); }
+
+    main { padding: 2.8rem 0 3.2rem; }
+    .page-intro { margin-bottom: 2rem; }
+    .eyebrow { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; color: #9ca3af; margin-bottom: 0.35rem; }
+    .title { font-size: clamp(2rem, 2.1vw + 1.2rem, 2.7rem); letter-spacing: -0.03em; margin-bottom: 0.55rem; }
+    .lede { font-size: 1rem; color: var(--text-muted); line-height: 1.65; max-width: 38rem; }
+
+    .call-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.4rem;
+      align-items: center;
+      border-radius: 24px;
+      background: radial-gradient(circle at 0% 0%, rgba(59,130,246,0.2), #050b1f);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+      padding: 1.6rem;
+    }
+    .call-meta { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .call-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.9rem 0 1rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.28rem 0.7rem; border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9); border: 1px dashed rgba(148,163,184,0.6);
+      font-size: 0.82rem; color: #cbd5f5;
+    }
+    .audio-panel {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148,163,184,0.7);
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.12);
+    }
+    .audio-label { font-size: 0.88rem; color: #cbd5f5; margin-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+    audio { width: 100%; outline: none; }
+    .transcript {
+      background: #050816;
+      border: 1px dashed rgba(148,163,184,0.55);
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .transcript strong { color: #e5e7eb; }
+
+    @media (max-width: 900px) {
+      header { position: static; }
+      .call-card { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .nav { flex-wrap: wrap; }
+      .nav-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+      .nav-links { flex-wrap: wrap; row-gap: 0.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <nav class="nav">
+        <a class="nav-brand nav-left" href="testWebsite.html">
+          <div class="logo-mark">
+            <img src="logo.png" alt="Perceptron Labs logo">
+          </div>
+          <div class="brand-text">
+            <span>Perceptron Labs</span>
+            <span>AI phone agents for service businesses</span>
+          </div>
+        </a>
+        <div class="nav-actions">
+          <div class="nav-links">
+            <a href="testWebsite.html#product">Product</a>
+            <a href="testWebsite.html#how-it-works">How it works</a>
+            <a href="testWebsite.html#who-its-for">Who it's for</a>
+            <a href="testWebsite.html#resources">Resources</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <button class="btn btn-primary" type="button" onclick="window.location.href='contact.html'">Book a demo</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrapper">
+      <div class="page-intro">
+        <div class="eyebrow">Sample call</div>
+        <h1 class="title">Hear the AI in action</h1>
+        <p class="lede">
+          A quick inbound demo call showing how the agent greets, qualifies, and books an appointment on the first try.
+        </p>
+      </div>
+
+      <div class="call-card">
+        <div>
+          <div class="call-meta">
+            In this clip, the caller asks for availability this week, the agent offers slots, gathers details, and confirms the booking without putting anyone on hold.
+          </div>
+          <div class="call-pills">
+            <span class="pill">24/7 coverage</span>
+            <span class="pill">HIPAA-conscious</span>
+            <span class="pill">Live scheduling</span>
+          </div>
+          <div class="audio-panel">
+            <div class="audio-label">
+              <span>Demo call - 1:12</span>
+              <a class="pill" href="sample-call.mp3" download>Download mp3</a>
+            </div>
+            <audio controls preload="metadata">
+              <source src="sample-call.mp3" type="audio/mpeg">
+              Your browser does not support the audio element. <a href="sample-call.mp3">Download the file instead.</a>
+            </audio>
+          </div>
+        </div>
+
+        <div class="transcript">
+          <p><strong>Caller:</strong> Hi, do you have any openings this week for a cleaning?</p>
+          <p><strong>AI Agent:</strong> Absolutely. I can get you in on Thursday at 3:30 PM. Can I grab your name and date of birth to confirm?</p>
+          <p><strong>Caller:</strong> That works. My name is Alex Rivera.</p>
+          <p><strong>AI Agent:</strong> Thanks, Alex. You're all set for Thursday at 3:30 PM. I've sent a confirmation to your phone.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
+
+
+
+
