@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sample Call | Perceptron Labs</title>
+  <title>Sample Call | Perceptron Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -39,7 +39,7 @@
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 0.9rem 0; }
     .nav-brand {
       display: inline-flex; align-items: center; gap: 0.75rem;
-      padding: 0.35rem 0.75rem;
+      padding: 0.35rem 1.2rem 0.35rem 0.75rem;
       border: 1px solid rgba(148, 163, 184, 0.7);
       border-radius: 999px;
       background: rgba(15, 23, 42, 0.7);
@@ -152,21 +152,21 @@
   <header>
     <div class="wrapper">
       <nav class="nav">
-        <a class="nav-brand nav-left" href="testWebsite.html">
+        <a class="nav-brand nav-left" href="index.html">
           <div class="logo-mark">
-            <img src="logo.png" alt="Perceptron Labs logo">
+            <img src="logo.png" alt="Perceptron Solutions logo">
           </div>
           <div class="brand-text">
-            <span>Perceptron Labs</span>
+            <span>Perceptron Solutions</span>
             <span>AI phone agents for service businesses</span>
           </div>
         </a>
         <div class="nav-actions">
           <div class="nav-links">
-            <a href="testWebsite.html#product">Product</a>
-            <a href="testWebsite.html#how-it-works">How it works</a>
-            <a href="testWebsite.html#who-its-for">Who it's for</a>
-            <a href="testWebsite.html#resources">Resources</a>
+            <a href="index.html#product">Product</a>
+            <a href="index.html#how-it-works">How it works</a>
+            <a href="index.html#who-its-for">Who it's for</a>
+            <a href="index.html#resources">Resources</a>
             <a href="contact.html">Contact</a>
           </div>
           <button class="btn btn-primary" type="button" onclick="window.location.href='contact.html'">Book a demo</button>
