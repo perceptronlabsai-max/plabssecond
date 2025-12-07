@@ -137,14 +137,43 @@
     }
     .transcript strong { color: #e5e7eb; }
 
-    @media (max-width: 900px) {
-      header { position: static; }
-      .call-card { grid-template-columns: minmax(0, 1fr); }
+    @media (max-width: 1024px) {
+      .call-card { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
     }
-    @media (max-width: 640px) {
-      .nav { flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .wrapper { padding: 0 1rem; }
+      header { position: static; }
+      .nav { padding: 0.7rem 0; gap: 1rem; flex-wrap: wrap; }
+      .nav-brand { padding: 0.3rem 0.9rem 0.3rem 0.6rem; }
       .nav-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
-      .nav-links { flex-wrap: wrap; row-gap: 0.35rem; }
+      .nav-links { flex-wrap: wrap; row-gap: 0.35rem; font-size: 0.85rem; }
+      .title { font-size: clamp(1.8rem, 5vw, 2.3rem); margin-bottom: 0.5rem; }
+      .lede { font-size: 0.95rem; }
+      .call-card { padding: 1.4rem 1.3rem; gap: 1.2rem; }
+      .call-meta { font-size: 0.88rem; }
+      .call-pills { gap: 0.45rem; margin: 0.8rem 0 0.9rem; }
+      .pill { font-size: 0.78rem; padding: 0.25rem 0.65rem; }
+      .audio-panel { padding: 0.9rem 1rem; border-radius: 14px; }
+      .audio-label { font-size: 0.82rem; margin-bottom: 0.3rem; }
+      .transcript { padding: 0.9rem 1rem; font-size: 0.88rem; border-radius: 14px; }
+      .btn { font-size: 0.82rem; padding: 0.5rem 1rem; }
+    }
+    @media (max-width: 480px) {
+      .wrapper { padding: 0 0.9rem; }
+      .nav { padding: 0.6rem 0; }
+      .title { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+      .lede { font-size: 0.9rem; line-height: 1.6; }
+      .page-intro { margin-bottom: 1.5rem; }
+      .call-card { padding: 1.2rem 1rem; gap: 1rem; }
+      .call-meta { font-size: 0.85rem; }
+      .call-pills { gap: 0.4rem; }
+      .pill { font-size: 0.72rem; padding: 0.2rem 0.55rem; }
+      .audio-panel { padding: 0.8rem 0.9rem; border-radius: 12px; }
+      .audio-label { font-size: 0.78rem; }
+      audio { height: 30px; }
+      .transcript { padding: 0.8rem 0.9rem; font-size: 0.82rem; line-height: 1.55; }
+      .transcript p { margin-bottom: 0.6rem; }
+      .btn { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
     }
   </style>
 </head>
@@ -218,8 +247,4 @@
   </main>
 </body>
 </html>
-
-
-
-
 
