@@ -154,14 +154,46 @@
     .contact-list a { color: var(--accent-2); }
     .contact-list a:hover { text-decoration: underline; }
 
-    @media (max-width: 900px) {
-      header { position: static; }
-      .contact-layout { grid-template-columns: minmax(0, 1fr); }
+    @media (max-width: 1024px) {
+      .contact-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
     }
-    @media (max-width: 640px) {
-      .nav { flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .wrapper { padding: 0 1rem; }
+      header { position: static; }
+      .nav { padding: 0.7rem 0; gap: 1rem; flex-wrap: wrap; }
+      .nav-brand { padding: 0.3rem 0.9rem 0.3rem 0.6rem; }
       .nav-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
-      .nav-links { flex-wrap: wrap; row-gap: 0.35rem; }
+      .nav-links { flex-wrap: wrap; row-gap: 0.35rem; font-size: 0.85rem; }
+      .title { font-size: clamp(1.8rem, 5vw, 2.3rem); margin-bottom: 0.5rem; }
+      .lede { font-size: 0.95rem; }
+      .contact-layout { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+      .contact-card { padding: 1.4rem 1.3rem 1.5rem; border-radius: 18px; }
+      .contact-card-title { font-size: 1.15rem; }
+      .contact-card-subtitle { font-size: 0.85rem; }
+      .field label { font-size: 0.78rem; }
+      .field input, .field textarea { font-size: 0.88rem; padding: 0.55rem 0.65rem; }
+      .btn { font-size: 0.82rem; padding: 0.5rem 1rem; }
+      .contact-meta { font-size: 0.88rem; }
+      .contact-pill { font-size: 0.78rem; padding: 0.25rem 0.65rem; }
+      .contact-list { gap: 0.5rem; }
+      .contact-list a { font-size: 0.88rem; }
+    }
+    @media (max-width: 480px) {
+      .wrapper { padding: 0 0.9rem; }
+      .nav { padding: 0.6rem 0; }
+      .title { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+      .lede { font-size: 0.9rem; line-height: 1.6; }
+      .contact-card { padding: 1.2rem 1rem 1.4rem; }
+      .contact-card-title { font-size: 1.05rem; margin-bottom: 0.25rem; }
+      .contact-card-subtitle { font-size: 0.82rem; }
+      .contact-form { gap: 0.8rem; }
+      .field { gap: 0.3rem; }
+      .field label { font-size: 0.75rem; }
+      .field input, .field textarea { font-size: 0.85rem; padding: 0.5rem 0.6rem; border-radius: 0.6rem; }
+      .field textarea { min-height: 100px; }
+      .btn { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
+      .contact-meta { font-size: 0.85rem; line-height: 1.55; }
+      .contact-list { margin-top: 0.8rem; }
     }
   </style>
 </head>
